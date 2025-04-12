@@ -197,9 +197,14 @@ const Auth = ({ children }: { children: React.ReactNode }) => {
   // Redirect authenticated users away from auth pages
   useEffect(() => {
     if (user && isAuthPage) {
-      router.push("/");
+      router.replace("/");
     }
   }, [user, isAuthPage, router]);
+
+  // don’t render anything while redirect is in progress otherwise will 404 first
+  if (isAuthPage && user) {
+    return null;
+  }
 
   // Allow access to public pages without authentication
   if (!isAuthPage && !isDashboardPage) {
