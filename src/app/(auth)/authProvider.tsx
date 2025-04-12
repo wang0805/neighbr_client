@@ -11,6 +11,7 @@ import {
   Heading,
   RadioGroupField,
   Radio,
+  Label,
 } from "@aws-amplify/ui-react";
 import { useRouter, usePathname } from "next/navigation";
 // boiler copied from https://ui.docs.amplify.aws/react/connected-components/authenticator
@@ -106,7 +107,7 @@ const components = {
         <>
           <Authenticator.SignUp.FormFields />
           <RadioGroupField
-            legend="Role"
+            legend={<Label htmlFor="custom:role">Role</Label>}
             name="custom:role"
             errorMessage={validationErrors?.["custom:role"]}
             hasError={!!validationErrors?.["custom:role"]}
@@ -202,8 +203,35 @@ const Auth = ({ children }: { children: React.ReactNode }) => {
   }, [user, isAuthPage, router]);
 
   // don’t render anything while redirect is in progress otherwise will 404 first
+  // if (isAuthPage && user) {
+  //   return null;
+  // }
+  // instead of returning null, add a spinning wheel instead
   if (isAuthPage && user) {
-    return null;
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-transparent z-50">
+        <svg
+          className="animate-spin h-6 w-6 text-primary-500"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            className="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+          ></circle>
+          <path
+            className="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+          ></path>
+        </svg>
+      </div>
+    );
   }
 
   // Allow access to public pages without authentication
