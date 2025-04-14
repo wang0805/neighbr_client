@@ -17,7 +17,8 @@ export const api = createApi({
     },
   }),
   reducerPath: "api",
-  tagTypes: [],
+  // state that you are saving in the store for redux, saving to backend
+  tagTypes: ["Managers", "Tenants"],
   endpoints: (build) => ({
     getAuthUser: build.query<User, void>({
       queryFn: async (_, _queryApi, _extraoptions, fetchWithBQ) => {
@@ -62,7 +63,36 @@ export const api = createApi({
         }
       },
     }),
+    //receive Tenant data from the database (backend) and sending cognitoId and a partial Tenant object
+    updateTenantSettings: build.mutation<
+      Tenant,
+      { cognitoId: string } & Partial<Tenant>
+    >({
+      query: ({ cognitoId, ...updatedTenant }) => ({
+        url: `/tenants/${cognitoId}`,
+        method: "PUT",
+        body: updatedTenant,
+      }),
+      //if we already have a fetched list of tenants in redux state on frontend, means we want to update everytime we make this query to get the most updated data
+      invalidatesTags: (result) => [{ type: "Tenants", id: result?.id }], //we set tagtypes earlier
+    }),
+    updateManagerSettings: build.mutation<
+      Manager,
+      { cognitoId: string } & Partial<Manager>
+    >({
+      query: ({ cognitoId, ...updatedManager }) => ({
+        url: `/managers/${cognitoId}`,
+        method: "PUT",
+        body: updatedManager,
+      }),
+      //if we already have a fetched list of managers in redux state on frontend, means we want to update everytime we make this query to get the most updated data
+      invalidatesTags: (result) => [{ type: "Managers", id: result?.id }], //we set tagtypes earlier
+    }),
   }),
 });
 
-export const { useGetAuthUserQuery } = api;
+export const {
+  useGetAuthUserQuery,
+  useUpdateTenantSettingsMutation,
+  useUpdateManagerSettingsMutation,
+} = api;
