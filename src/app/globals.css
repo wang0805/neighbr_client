@@ -247,3 +247,90 @@ body,
 [data-close-button="true"] {
   @apply bg-background border-border text-foreground hover:bg-muted;
 }
+
+/* LEAFLET CSS GOES HERE */
+/* Leaflet popup wrapper override */
+.leaflet-popup-content-wrapper {
+  width: fit-content !important;
+  max-width: none !important;
+  padding: 0 !important;
+  background: #ffffff !important;
+  border-radius: 10px !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
+  border: none !important;
+}
+
+/* Popup arrow styling */
+.leaflet-popup-tip {
+  background: #ffffff !important;
+}
+
+/* Leaflet default inner layout override */
+.leaflet-popup-content {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: fit-content !important;
+  max-width: none !important;
+  display: inline-block !important;
+}
+
+/* Custom popup content card */
+.popup-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 24px 10px 10px;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+  color: #222;
+}
+
+/* Thumbnail image block */
+.popup-image {
+  width: 40px;
+  height: 40px;
+  background-color: #555;
+  border-radius: 6px;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+/* Text content area */
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 120px;
+}
+
+/* Property name */
+.popup-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0074cc;
+  margin: 0 0 4px 0;
+  text-decoration: none;
+}
+
+.popup-title:hover {
+  text-decoration: underline;
+}
+
+/* Price and unit */
+.popup-price {
+  font-size: 14px;
+  font-weight: 600;
+  color: #222;
+  margin: 0 !important; /* overwrite <p> tag default styling */
+  padding: 0 !important;
+  display: block; /* optional but helpful if nested inline */
+}
+
+.popup-unit {
+  font-size: 13px;
+  font-weight: 400;
+  color: #888;
+}
