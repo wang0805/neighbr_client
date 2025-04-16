@@ -64,9 +64,11 @@ const SearchPage = () => {
         >
           <FiltersFull />
         </div>
-        <OneMap />
-        {/* <Map /> */}
-        <div className="basis-4/12 overflow-y-auto">{/* <Listings /> */}</div>
+        {/* <OneMap /> */}
+        <Map />
+        <div className="basis-4/12 overflow-y-auto">
+          <Listings />
+        </div>
       </div>
     </div>
   );

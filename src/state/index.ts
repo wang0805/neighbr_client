@@ -20,8 +20,8 @@ interface InitialStateTypes {
 
 export const initialState: InitialStateTypes = {
   filters: {
-    // location: "Los Angeles",
-    location: "Singapore",
+    location: "Los Angeles",
+    // location: "Singapore",
     beds: "any",
     baths: "any",
     propertyType: "any",
@@ -29,8 +29,8 @@ export const initialState: InitialStateTypes = {
     availableFrom: "any",
     priceRange: [null, null],
     squareFeet: [null, null],
-    // coordinates: [-118.25, 34.05],
-    coordinates: [103.8407909, 1.3668579], //singapore Center (AMK)
+    coordinates: [-118.25, 34.05],
+    // coordinates: [103.8407909, 1.3668579], //singapore Center (AMK)
   },
   isFiltersFullOpen: false,
   viewMode: "grid",

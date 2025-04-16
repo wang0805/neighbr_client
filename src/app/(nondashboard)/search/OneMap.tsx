@@ -54,20 +54,6 @@ const OneMap = () => {
         </div>
       </div>
     `;
-      //     const popupHTML = `
-      //   <div class="marker-popup">
-      //     <div class="marker-popup-image"></div>
-      //     <div>
-      //       <a href="/search/${property.id}" target="_blank" class="marker-popup-title">
-      //         ${property.name}
-      //       </a>
-      //       <p class="marker-popup-price">
-      //         $${property.pricePerMonth}
-      //         <span class="marker-popup-price-unit"> / month</span>
-      //       </p>
-      //     </div>
-      //   </div>
-      // `;
       marker.bindPopup(popupHTML);
     });
 
