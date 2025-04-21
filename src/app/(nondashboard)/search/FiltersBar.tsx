@@ -72,6 +72,11 @@ const FiltersBar = () => {
     dispatch(setFilters(newFilters));
     updateURL(newFilters);
   };
+  type Suggestion = {
+    id: string;
+    center: [number, number];
+    place_name: string;
+  };
 
   const handleLocationSearch = async () => {
     try {

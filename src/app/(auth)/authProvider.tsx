@@ -14,6 +14,7 @@ import {
   Label,
 } from "@aws-amplify/ui-react";
 import { useRouter, usePathname } from "next/navigation";
+import Loading from "@/components/Loading";
 // boiler copied from https://ui.docs.amplify.aws/react/connected-components/authenticator
 // https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbTNkQ29WaDNOR1FUdzBER29NRFhadzFmeHNWUXxBQ3Jtc0ttdXBUcEg3NUJSUXFvb21rcURuSlQ4LUJ2c3lWZlRtUG1sTEY4WEt2VGFlaW1wZDBLTnBYZThKNmd0WGgtbU1pQUdleDNuSGg1OU9HYmpvamg3WUdmODFvM1h0LUpoUTM1ZTNVbXZKQUFVaGVjeGVIWQ&q=https%3A%2F%2Fdocs.amplify.aws%2Fjavascript%2Ftools%2Flibraries%2Fconfigure-categories%2F&v=X1zCAPLvMtw
 
@@ -208,30 +209,7 @@ const Auth = ({ children }: { children: React.ReactNode }) => {
   // }
   // instead of returning null, add a spinning wheel instead
   if (isAuthPage && user) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center bg-transparent z-50">
-        <svg
-          className="animate-spin h-6 w-6 text-primary-500"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <circle
-            className="opacity-25"
-            cx="12"
-            cy="12"
-            r="10"
-            stroke="currentColor"
-            strokeWidth="4"
-          ></circle>
-          <path
-            className="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-          ></path>
-        </svg>
-      </div>
-    );
+    return <Loading />;
   }
 
   // Allow access to public pages without authentication
